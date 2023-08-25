@@ -1,0 +1,119 @@
+body {
+  background-color: bisque;
+  font-family: 'Montserrat', Arial;
+}
+
+.calculator {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  width: 500px;
+  height: 670px;
+  border-radius: 20px;
+  margin: auto;
+  margin-top: 5%;
+  background-color: rgb(136, 216, 250);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.display-container {
+  display: flex;
+  flex-direction: column;
+  margin: 40px 0px 30px 0px;
+  align-items: center; 
+  justify-content: center;
+}
+
+.input-display {
+  width: 500px;
+  height: 80px;
+  border-style: solid;
+  border-width: 2px;
+  background-color: rgb(253, 248, 241);
+  border-radius: 5px;
+  width: 460px;
+  margin: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  letter-spacing: 6px;
+}
+
+.expression-tracker {
+  font-size: 22px;
+  text-align: right;
+  padding-right: 35px;
+}
+
+.input-text {
+  font-size: 30px;
+  text-align: right;
+  padding-right: 30px;
+}
+
+.delete-btns {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  justify-content: space-around;
+  width: 500px;
+}
+
+.clear-btn {
+  width: 175px;
+  height: 60px;
+  border-width: 2px;
+  font-size: 25px;
+}
+
+.delete-btn {
+  width: 175px;
+  height: 60px;
+  border-width: 2px;
+  font-size: 25px;
+}
+
+.btn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 10px;
+  column-gap: 15px;
+  justify-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.number-btn {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  font-size: 25px;
+}
+
+.operation-btn {
+  background-color: rgb(190, 189, 189);
+  height: 100px;
+  width: 100px;
+  font-size: 25px;
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.equals-btn {
+  height: 100px;
+  width: 100px;
+  font-size: 25px;
+  border-radius: 50px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: rgb(254, 208, 123);
+}
