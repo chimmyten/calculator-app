@@ -194,6 +194,7 @@ function init() {
   const clearBtn = document.querySelector(".clear-btn");
   const deleteBtn = document.querySelector(".delete-btn");
   const decimalBtn = document.querySelector(".decimal-btn");
+  const allBtns = document.querySelectorAll("button");
 
   numberBtns.forEach((btn) => {
     btn.addEventListener("click", displayInputNumber);
@@ -208,6 +209,13 @@ function init() {
   deleteBtn.addEventListener("click", deleteChar);
   decimalBtn.addEventListener("click", displayDecimal);
   window.addEventListener("keydown", keyPress);
+
+  // to prevent keyboard inputs from focusing the last clicked button
+  allBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.blur();
+    })
+  })
 }
 
 init();
