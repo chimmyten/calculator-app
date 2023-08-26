@@ -1,33 +1,29 @@
-function displayInputNumber(e) {
-  const inputNumberBox = document.querySelector(".input-number");
-  const expressionNumber = document.querySelector(".expression-tracker-number");
-  const inputOperation = document.querySelector(".input-operation");
+const expressionNum = document.querySelector(".expression-tracker-number");
+const inputOperation = document.querySelector(".input-operation");
+const inputNum = document.querySelector(".input-number");
 
-  inputNumberBox.textContent += e.target.textContent;
+function displayInputNumber(e) {
+  inputNum.textContent += e.target.textContent;
 }
 
 function displayExpressionNumber(num) {
-  const expressionNumber = document.querySelector(".expression-tracker-number");
-  expressionNumber.textContent = num;
+  expressionNum.textContent = num;
 }
 
 function displayOperation(e) {
-  const inputOperation = document.querySelector(".input-operation");
-  const inputNumber = document.querySelector(".input-number");
-  const expressionNumber = document.querySelector(".expression-tracker-number");
   let result;
 
-  if (inputOperation.textContent && inputNumber.textContent) {
-    if (!expressionNumber.textContent) {
-      result = operation(0, +inputNumber.textContent, inputOperation.textContent);
+  if (inputOperation.textContent && inputNum.textContent) {
+    if (!expressionNum.textContent) {
+      result = operation(0, +inputNum.textContent, inputOperation.textContent);
     } else {
-      result = operation(+expressionNumber.textContent, +inputNumber.textContent, inputOperation.textContent);
+      result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
     }
-    expressionNumber.textContent = result;
-    inputNumber.textContent = "";
-  } else if (inputNumber.textContent) {
-    expressionNumber.textContent = inputNumber.textContent;
-    inputNumber.textContent = "";
+    expressionNum.textContent = result;
+    inputNum.textContent = "";
+  } else if (inputNum.textContent) {
+    expressionNum.textContent = inputNum.textContent;
+    inputNum.textContent = "";
   }
   inputOperation.textContent = e.target.textContent;
 }
@@ -61,9 +57,23 @@ function divide(num1, num2) {
   return num1 / num2;
 }
 
+function equals() {
+  let result;
+  if (!expressionNum.textContent) {
+    result = operation(0, +inputNum.textContent, inputOperation.textContent);
+  } else {
+    result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
+  }
+
+  expressionNum.textContent = "";
+  inputOperation.textContent = "";
+  inputNum.textContent = result;
+}
+
 function init() {
   const numberBtns = document.querySelectorAll(".number-btn");
   const operationBtns = document.querySelectorAll(".operation-btn");
+  const equalsBtn = document.querySelector(".equals-btn");
 
   numberBtns.forEach((btn) => {
     btn.addEventListener("click", displayInputNumber);
@@ -72,6 +82,8 @@ function init() {
   operationBtns.forEach((btn) => {
     btn.addEventListener("click", displayOperation);
   });
+
+  equalsBtn.addEventListener("click", equals)
 }
 
 init();
