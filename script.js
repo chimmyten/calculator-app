@@ -3,31 +3,16 @@ function displayInputNumber(e) {
   const expressionNumber = document.querySelector(".expression-tracker-number");
   const inputOperation = document.querySelector(".input-operation");
 
-  if (inputOperation.textContent) {
-    let result;
-    if (!expressionNumber.textContent) {
-      result = operation(0, +inputNumberBox.textContent, inputOperation.textContent);
-    } else {
-      result = operation(+expressionNumber.textContent, +inputNumberBox.textContent, inputOperation.textContent);
-    }
-    displayExpressionNumber(result);
-    inputNumberBox.textContent = e.target.textContent;
-    inputOperation.textContent = "";
-  } else {
-    inputNumberBox.textContent += e.target.textContent;
-  }
 }
 
 function displayExpressionNumber(num) {
   const expressionNumber = document.querySelector(".expression-tracker-number");
-
   expressionNumber.textContent = num;
 }
 
 function displayOperation(e) {
   const inputOperation = document.querySelector(".input-operation");
   inputOperation.textContent = e.target.textContent;
-  expressionOperation.textContent = e.target.textContent;
 }
 
 function operation(num1, num2, operation) {
