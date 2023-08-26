@@ -13,7 +13,11 @@ function displayInputNumber(e) {
     inputNum.textContent = "";
     expressionDone = false;
   }
-  inputNum.textContent += e.target.textContent;
+  if (typeof e === "number") {
+    inputNum.textContent += e;
+  } else {
+    inputNum.textContent += e.target.textContent;
+  }
 }
 
 function displayExpressionNumber(num) {
@@ -39,7 +43,11 @@ function displayOperation(e) {
     expressionNum.textContent = inputNum.textContent;
     inputNum.textContent = "";
   }
-  inputOperation.textContent = e.target.textContent;
+  if (typeof e === "string") {
+    inputOperation.textContent = e;
+  } else {
+    inputOperation.textContent = e.target.textContent;
+  }
 }
 
 function operation(num1, num2, operation) {
@@ -107,6 +115,42 @@ function deleteChar() {
   }
 }
 
+function keyPress(e) {
+  console.log(e.key);
+  // 0-9
+  if (!isNaN(e.key)) {
+    document.getElementById(`${e.key}`).classList.add("number-active");
+    displayInputNumber(+e.key);
+    deactivate(e.key, "number-active");
+    // +, -, *, /
+  } else if (e.key === "+" || e.key === "-" || e.key === "/" || e.key === "*") {
+    document.getElementById(`${e.key}`).classList.add("operation-active");
+    if (e.key === "*") {
+      displayOperation("x");
+    } else {
+      displayOperation(e.key);
+    }
+    deactivate(e.key, "operation-active");
+    // "Enter" key
+  } else if (e.key === "Enter") {
+    document.getElementById("=").classList.add("equals-active");
+    equals();
+    deactivate("=", "equals-active");
+    // "delete" key
+  } else if (e.key === "Backspace") {
+    document.getElementById(`${e.key}`).classList.add("number-active");
+    deleteChar();
+    deactivate(`${e.key}`, "number-active");
+  }
+  // TODO: add key effect for decimal point
+}
+
+// make key effect on buttons noticeable when using keyboard
+function deactivate(id, className) {
+  setTimeout(() => {
+    document.getElementById(`${id}`).classList.remove(`${className}`);
+  }, 100);
+}
 function init() {
   const numberBtns = document.querySelectorAll(".number-btn");
   const operationBtns = document.querySelectorAll(".operation-btn");
@@ -125,6 +169,7 @@ function init() {
   equalsBtn.addEventListener("click", equals);
   clearBtn.addEventListener("click", clearAll);
   deleteBtn.addEventListener("click", deleteChar);
+  window.addEventListener("keydown", keyPress);
 }
 
 init();

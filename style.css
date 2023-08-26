@@ -135,6 +135,10 @@ body {
   background-color: rgb(200, 200, 200);
 }
 
+.number-active {
+  background-color: rgb(200, 200, 200);
+}
+
 .operation-btn {
   background-color: rgb(190, 189, 189);
   height: 100px;
@@ -154,6 +158,10 @@ body {
   background-color: rgb(150, 150, 150);
 }
 
+.operation-active {
+  background-color: rgb(150, 150, 150);
+}
+
 .equals-btn {
   height: 100px;
   width: 100px;
@@ -170,5 +178,9 @@ body {
 }
 
 .equals-btn:active {
+  background-color: rgb(208, 170, 99);
+}
+
+.equals-active {
   background-color: rgb(208, 170, 99);
 }
