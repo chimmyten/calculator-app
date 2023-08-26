@@ -1,6 +1,6 @@
 body {
   background-color: bisque;
-  font-family: 'Montserrat', Arial;
+  font-family: "Montserrat", Arial;
 }
 
 .calculator {
@@ -22,7 +22,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 40px 0px 30px 0px;
-  align-items: center; 
+  align-items: center;
   justify-content: center;
 }
 
@@ -64,16 +64,24 @@ body {
   width: 500px;
 }
 
+.expression-tracker {
+  height: 30px;
+}
+
+.input-text {
+  height: 43px;
+}
+
 .input-number {
   margin-right: 10px;
 }
 
-.input-operation, .expression-tracker-number {
+.input-operation {
   margin-right: 15px;
 }
 
 .expression-tracker-number {
-  margin-right: 10px;
+  margin-right: 25px;
 }
 
 .clear-btn {

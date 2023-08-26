@@ -1,16 +1,45 @@
 function displayInputNumber(e) {
   const inputNumberBox = document.querySelector(".input-number");
   const expressionNumber = document.querySelector(".expression-tracker-number");
+  const inputOperation = document.querySelector(".input-operation");
 
-  inputNumberBox.textContent += e.target.textContent;
-  expressionNumber.textContent += e.target.textContent;
+  if (inputOperation.textContent) {
+    let result;
+    if (!expressionNumber.textContent) {
+      result = operation(0, +inputNumberBox.textContent, inputOperation.textContent);
+    } else {
+      result = operation(+expressionNumber.textContent, +inputNumberBox.textContent, inputOperation.textContent);
+    }
+    displayExpressionNumber(result);
+    inputNumberBox.textContent = e.target.textContent;
+    inputOperation.textContent = "";
+  } else {
+    inputNumberBox.textContent += e.target.textContent;
+  }
+}
+
+function displayExpressionNumber(num) {
+  const expressionNumber = document.querySelector(".expression-tracker-number");
+
+  expressionNumber.textContent = num;
 }
 
 function displayOperation(e) {
   const inputOperation = document.querySelector(".input-operation");
-  const expressionOperation = document.querySelector(".expression-tracker-operation");
   inputOperation.textContent = e.target.textContent;
   expressionOperation.textContent = e.target.textContent;
+}
+
+function operation(num1, num2, operation) {
+  if (operation === "+") {
+    return add(num1, num2);
+  } else if (operation === "-") {
+    return subtract(num1, num2);
+  } else if (operation === "x") {
+    return multiply(num1, num2);
+  } else {
+    return divide(num1, num2);
+  }
 }
 
 function add(num1, num2) {
@@ -39,7 +68,7 @@ function init() {
 
   operationBtns.forEach((btn) => {
     btn.addEventListener("click", displayOperation);
-  })
+  });
 }
 
 init();
