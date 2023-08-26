@@ -4,6 +4,8 @@ const inputNum = document.querySelector(".input-number");
 const errorMessage = document.querySelector(".error-message");
 // to know whether to replace the displayed number when inputting new numbers
 let expressionDone = false;
+// to ensure decimal point is only inputted once
+let decimalUsed = false;
 
 function displayInputNumber(e) {
   if (errorMessage.textContent) {
@@ -21,6 +23,8 @@ function displayInputNumber(e) {
 }
 
 function displayExpressionNumber(num) {
+  console.log("function activated");
+  decimalUsed = false;
   expressionNum.textContent = num;
 }
 
@@ -37,16 +41,25 @@ function displayOperation(e) {
     } else {
       result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
     }
-    expressionNum.textContent = result;
+    displayExpressionNumber(result);
     inputNum.textContent = "";
   } else if (inputNum.textContent) {
-    expressionNum.textContent = inputNum.textContent;
+    displayExpressionNumber(inputNum.textContent);
     inputNum.textContent = "";
   }
   if (typeof e === "string") {
     inputOperation.textContent = e;
   } else {
     inputOperation.textContent = e.target.textContent;
+  }
+}
+
+function displayDecimal(e) {
+  console.log(decimalUsed);
+  if (decimalUsed === false) {
+    expressionDone = false;
+    inputNum.textContent += ".";
+    decimalUsed = true;
   }
 }
 
@@ -98,6 +111,7 @@ function equals() {
   inputOperation.textContent = "";
   inputNum.textContent = result;
   expressionDone = true;
+  decimalUsed = false;
 }
 
 function clearAll() {
@@ -105,10 +119,14 @@ function clearAll() {
   inputNum.textContent = "";
   inputOperation.textContent = "";
   errorMessage.textContent = "";
+  decimalUsed = false;
 }
 
 function deleteChar() {
   if (inputNum.textContent) {
+    if (inputNum.textContent.charAt(-1) === ".") {
+      decimalUsed = false;
+    }
     inputNum.textContent = inputNum.textContent.slice(0, -1);
   } else if (inputOperation.textContent) {
     inputOperation.textContent = "";
@@ -151,12 +169,14 @@ function deactivate(id, className) {
     document.getElementById(`${id}`).classList.remove(`${className}`);
   }, 100);
 }
+
 function init() {
   const numberBtns = document.querySelectorAll(".number-btn");
   const operationBtns = document.querySelectorAll(".operation-btn");
   const equalsBtn = document.querySelector(".equals-btn");
   const clearBtn = document.querySelector(".clear-btn");
   const deleteBtn = document.querySelector(".delete-btn");
+  const decimalBtn = document.querySelector(".decimal-btn");
 
   numberBtns.forEach((btn) => {
     btn.addEventListener("click", displayInputNumber);
@@ -169,6 +189,7 @@ function init() {
   equalsBtn.addEventListener("click", equals);
   clearBtn.addEventListener("click", clearAll);
   deleteBtn.addEventListener("click", deleteChar);
+  decimalBtn.addEventListener("click", displayDecimal);
   window.addEventListener("keydown", keyPress);
 }
 
