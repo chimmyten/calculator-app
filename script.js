@@ -13,10 +13,27 @@ function displayExpressionNumber(num) {
 
 function displayOperation(e) {
   const inputOperation = document.querySelector(".input-operation");
- 
+  const inputNumber = document.querySelector(".input-number");
+  const expressionNumber = document.querySelector(".expression-tracker-number");
+  let result;
+
+  if (inputOperation.textContent && inputNumber.textContent) {
+    if (!expressionNumber.textContent) {
+      result = operation(0, +inputNumber.textContent, inputOperation.textContent);
+    } else {
+      result = operation(+expressionNumber.textContent, +inputNumber.textContent, inputOperation.textContent);
+    }
+    expressionNumber.textContent = result;
+    inputNumber.textContent = "";
+  } else if (inputNumber.textContent) {
+    expressionNumber.textContent = inputNumber.textContent;
+    inputNumber.textContent = "";
+  }
+  inputOperation.textContent = e.target.textContent;
 }
 
 function operation(num1, num2, operation) {
+  console.log(num1, num2, operation);
   if (operation === "+") {
     return add(num1, num2);
   } else if (operation === "-") {
