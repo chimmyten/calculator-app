@@ -40,7 +40,9 @@ function displayOperation(e) {
     } else {
       result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
     }
-    result = checkLength(result);
+    if (result.toString().includes(".")){
+      result = roundNum(result);
+    }
 
     displayExpressionNumber(result);
     inputNum.textContent = "";
@@ -105,30 +107,25 @@ function equals() {
   } else {
     result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
   }
-  result = checkLength(result);
 
+  if (result.toString().includes(".")){
+    result = roundNum(result);
+  }
   expressionNum.textContent = "";
   inputOperation.textContent = "";
-  inputNum.textContent = result;
+  console.log(result.toString());
+  inputNum.textContent = result.toString();
+  console.log(inputNum);
   expressionDone = true;
   decimalUsed = false;
 }
 
-function checkLength(result) {
-  if ((Math.ceil(result) - result).toString().length > 6) {
+function roundNum(result) {
+  console.log(result.toString().split(".")[1]);
+  if (result.toString().split(".")[1].length > 6) {
     result = result.toFixed(6);
   }
-
-  let resultString = result.toString();
-  // to remove unnecessary 0s at the end of numbers
-  while (resultString.charAt(resultString.length-1) === "0") {
-    if (resultString.charAt(resultString.length - 1) === "."){
-      console.log(true);
-      break;
-    }
-    resultString = resultString.slice(0, -1);
-  }
-  return resultString;
+  return result;
 }
 
 function clearAll() {
