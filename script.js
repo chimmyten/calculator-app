@@ -1,8 +1,14 @@
 const expressionNum = document.querySelector(".expression-tracker-number");
 const inputOperation = document.querySelector(".input-operation");
 const inputNum = document.querySelector(".input-number");
+// to know whether to replace the displayed number when inputting new numbers
+let expressionDone = false;
 
 function displayInputNumber(e) {
+  if (expressionDone === true) {
+    inputNum.textContent = "";
+    expressionDone = false;
+  }
   inputNum.textContent += e.target.textContent;
 }
 
@@ -68,6 +74,7 @@ function equals() {
   expressionNum.textContent = "";
   inputOperation.textContent = "";
   inputNum.textContent = result;
+  expressionDone = true;
 }
 
 function clearAll() {
