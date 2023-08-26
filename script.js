@@ -15,7 +15,7 @@ function displayInputNumber(e) {
     inputNum.textContent = "";
     expressionDone = false;
   }
-  if (typeof e === "number") {
+  if (typeof e === "string") {
     inputNum.textContent += e;
   } else {
     inputNum.textContent += e.target.textContent;
@@ -29,9 +29,22 @@ function displayExpressionNumber(num) {
 
 function displayOperation(e) {
   let result;
+  let operationDisplay;
+
+  // for keyboard inputs and clicks
+  if (typeof e === "object") {
+    operationDisplay = e.target.textContent;
+  } else {
+    operationDisplay = e;
+  }
 
   if (errorMessage.textContent) {
     errorMessage.textContent = "";
+  }
+  // for being able to input negative numbers
+  if (inputOperation.textContent && !inputNum.textContent && operationDisplay === "-") {
+    displayInputNumber("-");
+    return;
   }
 
   if (inputOperation.textContent && inputNum.textContent) {
@@ -50,11 +63,7 @@ function displayOperation(e) {
     displayExpressionNumber(inputNum.textContent);
     inputNum.textContent = "";
   }
-  if (typeof e === "string") {
-    inputOperation.textContent = e;
-  } else {
-    inputOperation.textContent = e.target.textContent;
-  }
+  inputOperation.textContent = operationDisplay;
 }
 
 function displayDecimal() {
@@ -113,9 +122,7 @@ function equals() {
   }
   expressionNum.textContent = "";
   inputOperation.textContent = "";
-  console.log(result.toString());
   inputNum.textContent = result.toString();
-  console.log(inputNum);
   expressionDone = true;
   decimalUsed = false;
 }
@@ -151,7 +158,7 @@ function keyPress(e) {
   // 0-9
   if (!isNaN(e.key)) {
     document.getElementById(`${e.key}`).classList.add("number-active");
-    displayInputNumber(+e.key);
+    displayInputNumber(e.key);
     deactivate(e.key, "number-active");
     // +, -, *, /
   } else if (e.key === "+" || e.key === "-" || e.key === "/" || e.key === "*") {
