@@ -40,7 +40,7 @@ function displayOperation(e) {
     } else {
       result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
     }
-    if (result.toString().includes(".")){
+    if (result.toString().includes(".")) {
       result = roundNum(result);
     }
 
@@ -108,7 +108,7 @@ function equals() {
     result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
   }
 
-  if (result.toString().includes(".")){
+  if (result.toString().includes(".")) {
     result = roundNum(result);
   }
   expressionNum.textContent = "";
