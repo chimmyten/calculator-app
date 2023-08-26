@@ -23,7 +23,6 @@ function displayInputNumber(e) {
 }
 
 function displayExpressionNumber(num) {
-  console.log("function activated");
   decimalUsed = false;
   expressionNum.textContent = num;
 }
@@ -54,8 +53,7 @@ function displayOperation(e) {
   }
 }
 
-function displayDecimal(e) {
-  console.log(decimalUsed);
+function displayDecimal() {
   if (decimalUsed === false) {
     expressionDone = false;
     inputNum.textContent += ".";
@@ -64,7 +62,6 @@ function displayDecimal(e) {
 }
 
 function operation(num1, num2, operation) {
-  console.log(num1, num2, operation);
   if (operation === "+") {
     return add(num1, num2);
   } else if (operation === "-") {
@@ -124,7 +121,7 @@ function clearAll() {
 
 function deleteChar() {
   if (inputNum.textContent) {
-    if (inputNum.textContent.charAt(-1) === ".") {
+    if (inputNum.textContent.charAt(inputNum.textContent.length - 1) === ".") {
       decimalUsed = false;
     }
     inputNum.textContent = inputNum.textContent.slice(0, -1);
@@ -134,7 +131,6 @@ function deleteChar() {
 }
 
 function keyPress(e) {
-  console.log(e.key);
   // 0-9
   if (!isNaN(e.key)) {
     document.getElementById(`${e.key}`).classList.add("number-active");
@@ -159,8 +155,12 @@ function keyPress(e) {
     document.getElementById(`${e.key}`).classList.add("number-active");
     deleteChar();
     deactivate(`${e.key}`, "number-active");
+    // decimal point key
+  } else if (e.key === ".") {
+    document.getElementById(`${e.key}`).classList.add("decimal-active");
+    displayDecimal();
+    deactivate(`${e.key}`, "decimal-active");
   }
-  // TODO: add key effect for decimal point
 }
 
 // make key effect on buttons noticeable when using keyboard

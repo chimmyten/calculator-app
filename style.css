@@ -148,7 +148,7 @@ body {
   background-color: rgb(200, 200, 200);
 }
 
-.number-active {
+.number-active, .decimal-active {
   background-color: rgb(200, 200, 200);
 }
 
