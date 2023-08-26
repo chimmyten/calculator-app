@@ -26,7 +26,7 @@ function displayOperation(e) {
   if (errorMessage.textContent) {
     errorMessage.textContent = "";
   }
-  
+
   if (inputOperation.textContent && inputNum.textContent) {
     if (!expressionNum.textContent) {
       result = operation(0, +inputNum.textContent, inputOperation.textContent);
@@ -68,6 +68,11 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+  if (num2 === 0) {
+    clearAll();
+    errorMessage.textContent = "err: divide by 0";
+    return;
+  }
   return num1 / num2;
 }
 
