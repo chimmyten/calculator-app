@@ -118,6 +118,18 @@ body {
   font-size: 25px;
 }
 
+.number-btn:hover,
+.clear-btn:hover,
+.delete-btn:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.number-btn:active,
+.clear-btn:active,
+.delete-btn:active {
+  background-color: rgb(200, 200, 200);
+}
+
 .operation-btn {
   background-color: rgb(190, 189, 189);
   height: 100px;
@@ -129,6 +141,14 @@ body {
   border-color: black;
 }
 
+.operation-btn:hover {
+  background-color: rgb(170, 170, 170);
+}
+
+.operation-btn:active {
+  background-color: rgb(150, 150, 150);
+}
+
 .equals-btn {
   height: 100px;
   width: 100px;
@@ -138,4 +158,12 @@ body {
   border-width: 2px;
   border-color: black;
   background-color: rgb(254, 208, 123);
+}
+
+.equals-btn:hover {
+  background-color: rgb(231, 189, 112);
+}
+
+.equals-btn:active {
+  background-color: rgb(208, 170, 99);
 }
