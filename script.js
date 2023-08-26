@@ -83,6 +83,14 @@ function clearAll() {
   inputOperation.textContent = "";
 }
 
+function deleteChar() {
+  if (inputNum.textContent) {
+    inputNum.textContent = inputNum.textContent.slice(0, -1);
+  } else if (inputOperation.textContent){
+    inputOperation.textContent = "";
+  }
+}
+
 function init() {
   const numberBtns = document.querySelectorAll(".number-btn");
   const operationBtns = document.querySelectorAll(".operation-btn");
@@ -100,7 +108,7 @@ function init() {
 
   equalsBtn.addEventListener("click", equals)
   clearBtn.addEventListener("click", clearAll);
-  deleteBtn.addEventListener("click")
+  deleteBtn.addEventListener("click", deleteChar)
 }
 
 init();
