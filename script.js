@@ -70,10 +70,18 @@ function equals() {
   inputNum.textContent = result;
 }
 
+function clearAll() {
+  expressionNum.textContent = "";
+  inputNum.textContent = "";
+  inputOperation.textContent = "";
+}
+
 function init() {
   const numberBtns = document.querySelectorAll(".number-btn");
   const operationBtns = document.querySelectorAll(".operation-btn");
   const equalsBtn = document.querySelector(".equals-btn");
+  const clearBtn = document.querySelector(".clear-btn");
+  const deleteBtn = document.querySelector(".delete-btn");
 
   numberBtns.forEach((btn) => {
     btn.addEventListener("click", displayInputNumber);
@@ -84,6 +92,8 @@ function init() {
   });
 
   equalsBtn.addEventListener("click", equals)
+  clearBtn.addEventListener("click", clearAll);
+  deleteBtn.addEventListener("click")
 }
 
 init();
