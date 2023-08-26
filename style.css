@@ -73,15 +73,15 @@ body {
 }
 
 .input-number {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .input-operation {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .expression-tracker-number {
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 .clear-btn {

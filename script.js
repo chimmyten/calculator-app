@@ -3,6 +3,7 @@ function displayInputNumber(e) {
   const expressionNumber = document.querySelector(".expression-tracker-number");
   const inputOperation = document.querySelector(".input-operation");
 
+  inputNumberBox.textContent += e.target.textContent;
 }
 
 function displayExpressionNumber(num) {
@@ -12,7 +13,7 @@ function displayExpressionNumber(num) {
 
 function displayOperation(e) {
   const inputOperation = document.querySelector(".input-operation");
-  inputOperation.textContent = e.target.textContent;
+ 
 }
 
 function operation(num1, num2, operation) {
