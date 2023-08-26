@@ -42,7 +42,7 @@ body {
 }
 
 .expression-tracker {
-  font-size: 22px;
+  font-size: 25px;
   text-align: right;
   padding-right: 35px;
   display: flex;
@@ -50,9 +50,8 @@ body {
 }
 
 .input-text {
-  font-size: 30px;
+  font-size: 35px;
   text-align: right;
-  padding-right: 30px;
   display: flex;
   justify-content: right;
 }
@@ -63,6 +62,18 @@ body {
   margin-bottom: 20px;
   justify-content: space-around;
   width: 500px;
+}
+
+.input-number {
+  margin-right: 10px;
+}
+
+.input-operation, .expression-tracker-number {
+  margin-right: 15px;
+}
+
+.expression-tracker-number {
+  margin-right: 10px;
 }
 
 .clear-btn {
