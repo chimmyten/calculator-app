@@ -80,6 +80,11 @@ body {
   margin-right: 10px;
 }
 
+.error-message {
+  font-size: 20px;
+  margin-right: 20px;
+}
+
 .expression-tracker-number {
   margin-right: 25px;
 }

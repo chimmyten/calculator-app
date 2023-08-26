@@ -1,10 +1,14 @@
 const expressionNum = document.querySelector(".expression-tracker-number");
 const inputOperation = document.querySelector(".input-operation");
 const inputNum = document.querySelector(".input-number");
+const errorMessage = document.querySelector(".error-message");
 // to know whether to replace the displayed number when inputting new numbers
 let expressionDone = false;
 
 function displayInputNumber(e) {
+  if (errorMessage.textContent) {
+    errorMessage.textContent = "";
+  }
   if (expressionDone === true) {
     inputNum.textContent = "";
     expressionDone = false;
@@ -19,6 +23,10 @@ function displayExpressionNumber(num) {
 function displayOperation(e) {
   let result;
 
+  if (errorMessage.textContent) {
+    errorMessage.textContent = "";
+  }
+  
   if (inputOperation.textContent && inputNum.textContent) {
     if (!expressionNum.textContent) {
       result = operation(0, +inputNum.textContent, inputOperation.textContent);
@@ -65,7 +73,9 @@ function divide(num1, num2) {
 
 function equals() {
   let result;
-  if (!expressionNum.textContent) {
+  if (!expressionNum.textContent && !inputNum.textContent) {
+    errorMessage.textContent = "err: please enter a number";
+  } else if (!expressionNum.textContent) {
     result = operation(0, +inputNum.textContent, inputOperation.textContent);
   } else {
     result = operation(+expressionNum.textContent, +inputNum.textContent, inputOperation.textContent);
@@ -81,12 +91,13 @@ function clearAll() {
   expressionNum.textContent = "";
   inputNum.textContent = "";
   inputOperation.textContent = "";
+  errorMessage.textContent = "";
 }
 
 function deleteChar() {
   if (inputNum.textContent) {
     inputNum.textContent = inputNum.textContent.slice(0, -1);
-  } else if (inputOperation.textContent){
+  } else if (inputOperation.textContent) {
     inputOperation.textContent = "";
   }
 }
@@ -106,9 +117,9 @@ function init() {
     btn.addEventListener("click", displayOperation);
   });
 
-  equalsBtn.addEventListener("click", equals)
+  equalsBtn.addEventListener("click", equals);
   clearBtn.addEventListener("click", clearAll);
-  deleteBtn.addEventListener("click", deleteChar)
+  deleteBtn.addEventListener("click", deleteChar);
 }
 
 init();
